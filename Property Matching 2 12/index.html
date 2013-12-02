@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>index</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+        <script>
+            function init(){
+                onAppResize();
+				sessionStorage.clear();
+				//sessionStorage.clear()
+				//console.log(sessionStorage.login_id);
+            }
+            
+            function onAppResize(){}
+        </script>
+    </head> 
+    <body onResize="onAppResize()" onLoad="init()"> 
+          <div data-role="page" id="page" style="height:auto;" class="homemainbg">
+                <div data-role="content"  id="contentDiv">	
+                    <div class="london-txt">London</div>
+                    <div class="logo"><img src="images/logo.png" alt="" class="logo-img"/></div>
+                    <div class="rent-txt">Whether your letting or renting<br/>
+                                            iProperty Match<br/>
+                                        is your mobile partner
+                    </div>
+                    <div class="twobuttons">
+                        <a href="#" onClick="document.location.href='search.html';" class="searchBG">Search</a>
+                        <a href="#" onClick="document.location.href='createAccount.html';" class="regBG">Register</a>
+                    </div>
+                    <div class="login-box">
+                      <a href="#" class="login-txt" onClick="document.location.href='login_screen.html'">Login</a>
+                    </div>
+                </div>
+          <!--Content End-->
+          </div>
+    </body>
+</html>

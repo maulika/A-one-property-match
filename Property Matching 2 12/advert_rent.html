@@ -1,0 +1,209 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Advert rent</title>
+		<script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+        <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+        
+        <link type="text/css" href="css/jquery.datepick.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.datepick.js"></script>
+ <script src="js/jquery.constant.js" type="text/javascript"></script>
+
+<script>
+	function init(){
+		onAppResize();
+	}
+	
+	function onAppResize(){
+		var headerH = document.getElementById('headerDiv').style.height;
+		//var footerH = document.getElementById('footerDiv').style.height;
+		headerH = $('#headerDiv').height();
+		//footerH = $('#footerDiv').height();
+	
+		if(headerH == 0){
+			headerH = 50;
+			//footerH = 45;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-45;
+	
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+	
+	$(function() {
+	$('#popupDatepicker').datepick();
+	$('#inlineDatepicker').datepick({onSelect: showDate});
+});
+
+function showDate(date) {
+	alert('The date chosen is ' + date);
+}
+	
+	
+	
+	function insertSave(){
+		
+		var Availability = $('#popupDatepicker').val();
+		var Rent = $('#slider-1').val();
+		var Deposite = $('#slider-2').val();
+		var Include_Bills = $('#bills').val();
+		
+		alert('saved...!!');
+		var addinquiry = {
+                                  
+					"page"              : "Rent_Availability",//title,description,Rent_Availability,Amenities
+                    "property_id"       : sessionStorage.property_id,//rented or wanted ""
+                    "title"             : "",//also pass in other in ''
+                    "Description" 		:"",
+                    "Availability"		:Availability,
+                    "Rent"				:Rent,
+                    "Include_Bills"		:Include_Bills,
+                    "Deposite"			:Deposite,
+                    "amenities"			:"",
+                    "latitude"			:sessionStorage.lat,
+                    "longitude"			:sessionStorage.long
+                                    
+                                    
+                     }
+								
+								
+								
+			var param1= 'Post_Advert_Rented_Title='+JSON.stringify(addinquiry);
+		getDetails=getDataFromWebservices(post_advert_rented_titleurl,param1);
+		
+					var status =getDetails.status;
+					//var reg_id = getStatus.Result;
+					
+					//console.log(Registration_id);
+					
+					
+				if(status=="YES")
+					{
+					
+					ResultCollection = getDetails.Result;
+					console.log(ResultCollection);
+					sessionStorage.property_id = 	ResultCollection;
+					
+					
+				}else
+					{
+					alert("Please fill all the field");
+					console.log("dataerror");
+					}
+						
+				
+	
+	//window.location.replace("search_results_tenants.html");					
+		
+	}
+	
+	
+	
+	
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" onClick="document.location.href='advert_details.html';" class="backBtn">Back</a>
+            <h1 class="headerTitle" style="overflow:visible;">Rent & Availability</h1>
+            <a href="#" onClick="insertSave();" class="lightblueBtn">Next</a>
+        
+        </div>
+        <!--Header End-->
+		
+        <!--Content Start-->
+        <div data-role="content"  id="contentDiv" style="margin:0;padding:0;">	
+        
+        <div class="look-detail-bg-new">
+        
+        <b style="float:left;margin-top:25px;color:#003;">Availability from</b>
+        
+        </div>
+		
+        <div style="margin-left:12px;">
+                <input type="date" style="width:70%;border-radius:0;" placeholder="18-11-2013" 
+                id="popupDatepicker"/> 
+                </div>	
+        
+        <br/>
+        <br/>
+        
+        <div >
+        <b style="margin-left:12px; color:#003; font-size:19px;">Rent:</b>
+        </div>
+        
+                
+        <div class="budget_info">
+        
+        <label for="slider-1">
+        <span class="drakwhiteText">What is your monthly salary?</span>
+        </label>
+			
+        
+        <ul>
+        <li style="text-align:right;line-height:33px;letter-spacing:10px;
+        background:#cbcbcb;width:30px;font-weight:bold;border:1px solid #999;
+        border-radius:7px 0 0 7px;">£</li>
+        <li>
+        <input type="range" name="slider-1" id="slider-1" 
+        value="3000" min="0" max="5000" 
+        style="width:60%;height:20px;border:1px solid #999;
+        border-radius:0px 10px 10px 0px;"/>
+        </li>
+        
+        <li style="margin-left:-30px;">
+        <input style="width:60%;height:20px;" placeholder="pcm"/>
+        </li>
+        </ul>       
+        </div>
+        
+        <br/> <br/>
+        
+        <div style="float:left;color:#264457;width:100%;">&nbsp;&nbsp;Include Bills?</div>
+        <br/>
+       <div class="include_bills">
+       <ul>
+       <li>yes</li>
+       <li>no</li>
+       <li>some</li>
+       </ul>
+       </div>
+        <br/></br/>
+        <div class="tick_mark_status">
+         <ul>
+        <li><input id="bills" style="width:83%;height:20px;float:left;" value="yes"/></li>
+        <li><input id="bills" style="width:83%;height:20px;float:left;" value="no"/></li>
+        <li><input id="bills" style="width:83%;height:20px;float:left;" value="some"/></li>
+        </ul>
+        </div>
+        
+       <br/><br/><br/>
+        
+        <div style="color:#264457;float:left;width:100%;">&nbsp;&nbsp;Deposite</div>
+        <br/>
+       
+       <div> <ul style="float:left;">
+        <li style="text-align:right;line-height:33px;letter-spacing:10px;
+        background:#cbcbcb;width:30px;font-weight:bold;border:1px solid #999;
+        border-radius:7px 0 0 7px;list-style:none;float:left;margin-left:-26px;">£</li>
+        
+        <li style="list-style:none;float:left;" >
+        <input type="range" name="slider-2" id="slider-2" value="3000" 
+        min="0" max="5000" style="width:60%;height:20px;
+        border:1px solid #999;border-radius:0px 10px 10px 0px;"/></li>
+       
+		</ul></div>
+        
+        </div>
+        <!--Content End-->
+  </div>      
+</body>
+</html>

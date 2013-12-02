@@ -1,0 +1,128 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+		<title>create account</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery.cookie.js" type="text/javascript"></script>
+        <script src="js/jquery.constant.js" type="text/javascript"></script>
+
+
+<script>
+	function init(){
+		onAppResize();
+	}
+	
+	function onAppResize(){
+		var headerH = $('#headerDiv').height();
+		if(headerH == 0){
+			headerH = 50;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-45;
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+	
+	
+function onContinueClick()
+{
+		var firstname = $('#firstname').val();
+		var lastname = $('#lastname').val();
+		var phone = $('#phone').val();
+		var mobile = $('#mobile').val();
+		var email = $('#email').val();
+		
+		
+	
+		sessionStorage.firstname = firstname;
+		sessionStorage.lastname = lastname;
+		sessionStorage.phone = phone;
+		sessionStorage.mobile = mobile;
+		sessionStorage.email = email;
+		
+		console.log(sessionStorage.firstname);
+		
+		
+		if(firstname!= '' && lastname!= '' && phone!= '' && mobile!= '' && email!= '' ){
+			
+			if(isNaN(phone)){
+			
+				alert('Enter Phone in number');
+				document.getElementById('phone').focus();
+			}			
+			
+			else if(isNaN(mobile)){
+				
+				alert('Enter Mobile in number');
+				document.getElementById('mobile').focus();
+			}
+			
+			else if(isNaN(email) || !isNaN(email)){
+				
+			var x=document.getElementById('email').value;
+			var atpos=x.indexOf("@");
+			var dotpos=x.lastIndexOf(".");
+			if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+			
+			  {
+			  alert("Not a valid e-mail address");
+			 
+			  }	
+				
+			
+				
+			else{
+			
+			 //alert('true');
+			 window.location.replace("acc1b_completed.html");
+			
+			}}
+			}else{
+				
+				alert('Please Fill all the Fields.');
+				
+				}
+		
+		
+		
+	 
+	
+}
+	
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#"  onclick="document.location.href='login_screen.html'" class="blueBtn">Cancel</a>
+            <h1 class="headerTitle">Create Account</h1>
+        </div>
+        <!--Header End-->
+        
+        <!--Content Start-->
+        <div data-role="content"  id="contentDiv">
+        	<form method="post">
+        		<div class="detail">
+                <input id="firstname" class="create-ac" type="text" placeholder="First Name" style=" height: 35px;"/>
+                <input id="lastname" class="create-ac" type="text" placeholder="Last Name" style=" height: 35px;"/>
+                <input id="phone" class="create-ac" type="number" placeholder="Phone" style=" height: 35px;"/>
+                <input id="mobile" class="create-ac" type="number" placeholder="Mobile" style=" height: 35px;"/>
+                <input id="email" class="create-ac" type="email" placeholder="Email" style=" height: 35px;"/>
+            <div class="pink-bg" style="text-align:center;color:#FFF !important;margin-top:14px;" 
+             onClick="onContinueClick()">
+            Continue</div>
+                </div>
+             
+			</form>
+        </div>
+        <!--Content End-->
+        </div>
+</body>
+</html>

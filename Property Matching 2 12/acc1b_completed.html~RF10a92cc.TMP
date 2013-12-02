@@ -1,0 +1,193 @@
+<!DOCTYPE html> 
+<html>
+     <head>
+     <title> account completed</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+		
+		<script>
+            function init(){
+                onAppResize();
+				
+		var firstname = sessionStorage.firstname;
+		var lastname = sessionStorage.lastname;
+		var phone = sessionStorage.phone;
+		var mobile = sessionStorage.mobile;
+		var email = sessionStorage.email;
+		
+		console.log(sessionStorage.firstname);
+		console.log(sessionStorage.lastname);
+		console.log(sessionStorage.phone);
+		console.log(sessionStorage.mobile);
+		console.log(sessionStorage.email);
+		
+				 
+			$('#name').val(firstname);	 
+				 			
+            }
+            
+            function onAppResize(){
+                var headerH = $('#headerDiv').height();
+                if(headerH == 0){
+                    headerH = 50;
+                }
+                
+                var appHeight = window.innerHeight;
+                var contentH = appHeight-(headerH)-45;
+                document.getElementById('contentDiv').style.height = contentH+'px';
+            }
+			
+function onCreateClick()
+{
+		
+		var name = $('#name').val(); 
+		var password =$('#password').val();
+		var confirmpassword =$('#confirmPassword').val();
+		
+		
+		
+		if(!password){
+				alert('please enter password');
+				return false;
+			}else if(!confirmpassword){
+				alert('please Re-type the password');
+				return false;
+			}
+	
+	
+	var addinquiry = {
+					  			"type"		:"Tenant", // Tenant or Landlord
+							   	"firstname"	:firstname,
+								"lastname"	:lastname,
+								"phone"	:phone,
+								"mobile":mobile,
+								"email":email,//username
+								"password":password
+														
+								 }
+								 
+								 
+	 var param1= 'Registration='+JSON.stringify(addinquiry);
+	 
+	 $.ajax({
+				url: "http://localhost/Propertyappfinal/Property_WS/Registration.php",
+				/*url: "http://www.mappfia.com/tonic/postcodelookup/PostCoderWebTest.php",*/
+				type: "post",
+				data: param1,
+				success: function(data){
+				console.log(data);
+					findCollection = $.parseJSON(data);
+
+					getStatus = findCollection.Registration;
+		
+					var status =getStatus.status;
+					var reg_id = getStatus.Registration_id;
+					console.log(status);
+					//console.log(Registration_id);
+					alert("You are successfully Registered");
+					
+				if(status=="YES")
+					{
+					/*ResultCollection = getStatus.Result;
+					
+					$('#popUpListview').html('');
+					var newItem;
+					for(var i=0; i<ResultCollection.length; i++){
+						var LoginData =  ResultCollection[i];
+						var id = LoginData.id;
+						var type = LoginData.Cust_Type;
+						$.cookie("login_id", id);
+						$.cookie("user_type", type);
+						// $.mobile.changePage('#search');
+						window.location.replace("search.html");
+						console.log("datasuccess");*/
+						alert("You are successfully Registered");
+						
+					
+				}else
+					{
+					alert("Please fill all the field");
+					console.log("dataerror");
+					}
+					$('#popUpListview').html(newItem);
+				},
+				error:function(e){
+					alert("Service failure or Internet Connection loss!!");
+				}
+			});							 
+								 
+								 
+								 
+}
+
+
+
+function onTenantClick(){}
+			
+function onLandlordClick(){}		
+			
+        </script>
+	</head> 
+    
+<body onResize="onAppResize()" onLoad="init()"> 
+	<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" class="blueBtn" onClick="document.location.href='createAccount.html';">Cancel</a>
+            <h1 class="headerTitle">Create Account</h1>
+            <a href="#" class="acceptGreenBtn" onClick="onCreateClick()">Create</a>
+            <!--onClick="document.location.href='quick_panel_out.html';"-->
+        </div>
+        <!--Header End-->
+        
+        <!--Content Start-->
+        <div data-role="content"  id="contentDiv">
+        	<form method="post">
+        		<div class="sec-form">
+                <input id="name" class="create-ac" type="text" 
+                placeholder="tony" style=" height: 35px;"/>
+                <input id="password" class="create-ac" type="password" placeholder="*********" style=" height: 35px;"/>
+                <input id="confirmPassword" class="create-ac" type="password" placeholder="*********" style=" height: 35px;"/>
+                </div>
+                
+                <div class="form-section">
+               
+                <input id="btn_info" type="button" value="I am a tenant" 
+                style=" height: 35px;"/>
+                <a onClick="document.location.href='#';">
+                <img src="images/other/correct.png" width="24" height="26" 
+                alt="" class="form-input-img"  onClick="onTenantClick()"/></a>
+                
+                <input class="create-ac" type="button" value="I am a landlord" 
+                style=" height: 35px;"/>
+                <!--onClick="document.location.href='acc1a_completed.html';"-->
+                <a>
+                <img src="images/other/correct.png" width="24" height="26" 
+                alt="" class="form-input-img" style="opacity: 0.25;" 
+                onClick="onLandlordClick()"/></a>
+                </div>
+                
+                
+                <h2 class="blue-txt">Legal Stuff</h2>
+                
+                <div class="form-section" style="margin:0;">
+                <input class="create-ac" type="text" placeholder="Terms & Conditions" style=" height: 35px;"/>
+                	<a><img src="images/other/blue-arrow.png" width="35" height="30" alt="" class="form-input-img" onClick="document.location.href='terms.html';"/></a>
+                <div class="arrow-input">
+                <input class="create-ac" type="text" placeholder="Privacy Policy" style=" height: 35px;"/>
+                	<a onClick="document.location.href='#';"><img src="images/other/blue-arrow.png" width="35" height="30" alt="" class="form-input-img" onClick="document.location.href='privacy.html';"/></a>
+                </div>
+                </div>
+                
+                
+			</form>
+        </div>
+        
+        <!--Content End-->
+        </div>
+</body>
+</html>

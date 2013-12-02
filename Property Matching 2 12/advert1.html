@@ -1,0 +1,332 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>post an advert</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+		<script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <link rel="stylesheet"  href="css/panel/jquery.mobile-1.3.0-beta.1.css">
+		<link rel="stylesheet" href="css/panel/jqm-demos.css">
+		<script src="js/panel/jquery-1.7.1.min.js"></script>
+		<script src="js/panel/jquery.mobile-1.3.0-beta.1.js"></script>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery.constant.js"></script>
+        
+         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+		<script>
+			var loginId = sessionStorage.login_id;
+	var user_type =sessionStorage.user_type;
+			
+            function init(){
+                onAppResize();
+				
+				if(sessionStorage.login_id == null){
+					 
+				 var guest =  document.getElementById('b');
+				 var guest2 =  document.getElementById('c');
+				 var guest3 =  document.getElementById('d');
+				 var guest4 =  document.getElementById('e');
+				
+				document.getElementById('a').removeChild(guest);
+				document.getElementById('a').removeChild(guest2);
+				document.getElementById('a').removeChild(guest3);
+				document.getElementById('a').removeChild(guest4);
+				}
+				
+				
+            }
+            
+            function onAppResize(){
+                var headerH = $('#headerDiv').height();
+				var secondHeaderH = $('#secondHeaderDiv').height();
+                if(headerH == 0){
+                    headerH = 50;
+                }
+                
+                var appHeight = window.innerHeight;
+                var contentH = appHeight-(headerH+secondHeaderH)-10;
+                $('#contentDiv').height(contentH);
+            }
+			
+			function onSlideOPENClick(){
+				$('#slidePopUp').show();
+				$('#slidePopUp').animate({
+					height:(window.innerHeight+"px"),
+				},500,function(){});
+					
+				//$('#slidePopUp').css('height',);
+			}
+			
+			function onPopUpCloseClick(){
+				$('#slidePopUp').show();
+				$('#slidePopUp').animate({
+					height:(0+"px"),
+				},500,function(){
+					$('#slidePopUp').hide();
+				});
+			}
+			
+			
+       
+function onSearchAdvert()
+{
+	
+	 
+	 
+	 
+	
+	 var addinquiry = {
+									"login_id"                :  loginId,
+                                 	 "advertising_type"          :       "rented",//rented or wanted ""
+                                    "accommodation_type"      :       "house",
+                                    "house_type"              :       "Detached",
+                                    "postcode"                :       "380001",
+                                    "address1"                 :"B802 Near US Pizza",
+                                    "address2"                 :"Swastik Cross Road",
+                                    "address3"                 :"CG ROAD",
+                                    "address4"                 :"Ahmedabad",
+                                    "address5"                 :"",
+                                    "address6"                 :"",
+                                    "address7"                 :"",
+                                    "latitude"                 :"43.342443",
+                                    "longitude"                 :"35.34535"
+					}
+					
+				var param1= 'Post_Advert_Rented='+JSON.stringify(addinquiry);
+				getDetails=getDataFromWebservices(post_advert_rentedurl,param1);
+		
+					var status =getStatus.status;
+					//var reg_id = getStatus.Result;
+					console.log(status);
+					//console.log(Registration_id);
+					
+					
+				if(status=="YES")
+					{
+					
+					ResultCollection = getStatus.Result;
+					console.log(ResultCollection);
+						for(var i=0; i<ResultCollection.length; i++){
+							 
+							getObj = ResultCollection[i];
+							var id= getObj.id;
+							var pic= getObj.image;
+							var name = getObj.firstName + getObj.sureName ;
+							var bedroom= getObj.bedroom;
+							var address= getObj.address;
+							var city= getObj.city;
+							
+						console.log(pic);
+							
+			
+}			/*$('#popUpListview').html('');
+					var newItem;
+					for(var i=0; i<ResultCollection.length; i++){
+						var LoginData =  ResultCollection[i];
+						var id = LoginData.id;
+						var type = LoginData.Cust_Type;
+						$.cookie("login_id", id);
+						$.cookie("user_type", type);
+						// $.mobile.changePage('#search');
+						window.location.replace("search.html");
+						console.log("datasuccess");
+						alert("You are successfully Registered");*/
+					
+					
+				}else
+					{
+					alert("Please fill all the field");
+					console.log("dataerror");
+					}
+						
+				
+	
+	//window.location.replace("search_results_tenants.html");
+	
+}
+
+
+ function onRent(){
+	 
+	 
+	 }
+
+</script>  
+        
+        
+        
+	</head>
+
+    <body onResize="onAppResize()" onLoad="init()"> 
+        <div data-role="page" id="page" style="height:auto;" >
+        		<!--Header Start-->
+                <div id="headerDiv" data-role="header" class="myHeaderBG">
+                    <a href="#nav-panel" class="leftHeaderNew"></a>
+                    <h1 class="headerTitle">Post an advert</h1>
+                    
+                </div>
+                <!--Header End-->
+                
+                
+                    
+                <!--Content Start-->
+                <div data-role="content"  id="contentDiv" style="margin:0;padding:0;" class="myContentBG">
+        
+        <h2 class="blue-txt" style="padding:0 0 0 15px;">What are you advertising?</h2>
+		<div class="search-bg"><a href="#" class="male-grey-icon"> <img src="images/other/home-grey.png" width="35" 
+
+height="35" alt="" /></a>
+			<div class="advert-box-main2">
+				<span class="black-txt" >Accommodation to Rent</span>
+                <span class="grey-txt-detail">Advertise the property you are renting</span>
+			</div>
+            <a href="#" class="blue-arrow-icon3" > 
+            <img src="images/other/blue-arrow.png" width="35" height="30" alt="" 
+
+				onClick="document.location.href='advert2.html';" /></a>
+		</div>
+        <div class="search-bg"><a href="#" class="male-grey-icon"> <img src="images/other/man-grey.png" width="35" 
+
+height="30" alt="" /></a>
+			<div class="advert-box-main2">
+				<span class="black-txt">Accommodation Wanted</span>
+                <span class="grey-txt-detail">Advertise yourself and the type of accomodation you require</span>
+			</div>
+            <a href="#" class="blue-arrow-icon3"> <img src="images/other/blue-arrow.png" width="35" height="30" alt="" 
+
+onClick="document.location.href='advert_gender.html';"/></a>
+		</div>
+        
+        
+       
+        
+       
+        
+        </div> 
+       
+        
+                <!--Content End-->
+                
+                
+                <div data-role="panel" data-position="left" data-position-fixed="false" id="nav-panel" data-theme="a">
+                
+					<ul data-role="listview" data-theme="a" data-divider-theme="a" style="margin-top:-16px;" class="nav-search"  id="a">
+						<!--<li data-icon="delete" style="background-color:#111;">
+							<a href="#" data-rel="close">Close menu</a>
+						</li>-->
+                        <li data-icon-position="left" onClick="document.location.href='search.html';" data-rel="close">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/searchIcon.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">Search</span>
+                            </div>
+						</li>
+                        
+                        <li data-icon-position="left" onClick="document.location.href='login_screen.html';" data-rel="close">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/dss-off.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">Sign Up/Log in</span>
+                            </div>
+						</li>
+                         <li data-icon-position="left" onClick="document.location.href='my-account.html';" data-rel="close" id="b">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/dss-off.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">My Account</span>
+                            </div>
+						</li>
+                        
+                        
+                        <li data-icon-position="left" onClick="document.location.href='my-msgs.html';" data-rel="close" id="c">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/email.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">My inbox</span>
+                            </div>
+						</li>
+                        
+                        <li data-icon-position="left" onClick="document.location.href='my-favorites.html';" data-rel="close" id="d">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/grey-star.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">Favourites</span>
+                            </div>
+						</li>
+                        
+                        
+                        <li data-icon-position="left" onClick="document.location.href='my-listings.html';" data-rel="close" id="e">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/home-grey.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">Listing</span>
+                            </div>
+						</li>
+                        
+						
+                        <li data-icon-position="left" onClick="document.location.href='advert1.html';" data-rel="close">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/postanAdvertIcon.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">Post an Advert</span>
+                            </div>
+						</li>
+                        
+                        
+                        
+					</ul>
+					<!-- panel content goes here -->
+				</div><!-- /panel -->
+                
+         
+         <div id="slidePopUp" hidden="true" 
+            style="width:100%;background-image:url(images/bg_trans.png);position:fixed;top:0px;z-index:100; height:auto;">
+            	<!--<button id="popUpCloseBtn" onClick="onPopUpCloseClick()">Close</button>-->
+                <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+ 
+                <a href="#" onClick="document.location.href='quick_panel_out.html';" class="backBtn">Back</a>
+                <h1 class="headerTitle">Search Options</h1>
+                <a href="#" id="popUpCloseBtn" onClick="onPopUpCloseClick()" class="lightblueBtn">Hide</a>
+            </div>
+        <!--Header End-->
+                
+                <div style="width:100%; height:auto; ">
+                	<div class="all-map-images"><br /><br />
+                    
+                        <img src="images/other/map-view.png" width="100%" height="auto" alt="" onClick="document.location.href='map_cpa.html';"/><br /><br />
+                        <img src="images/other/photos.png" width="100%" height="auto" alt="" 
+onClick="document.location.href='featured.html';"/><br /><br />
+                        <img src="images/other/list.png" width="100%" height="auto" alt=""     onClick="document.location.href='search_filters_on.html';" /><br /><br />
+                        <img src="images/other/filter.png" width="100%" height="auto" alt=""   onClick="document.location.href='search_results.html';"/><br /><br />
+                        
+                        <a href="#popupBasic" data-rel="popup">
+                        <img src="images/other/save-search.png" width="100%" height="auto" alt=""  />
+                         </a>
+                     
+                         
+                        
+                       
+                    </div>
+                </div>        
+            </div>
+            
+            
+            <div data-role="popup" id="popupBasic" 
+             style="background:#101c31;padding:10px;height:143px;width:92%;">
+			<div id="popheader" data-role="header" 
+            style="background:#101c31; height:48px">
+             <a href="#" class="blueBtn" onClick="document.location.href='#';">Cancel</a>
+            <h1 class="headerTitle"></h1>
+            <a href="#" onClick="document.location.href='login_screen.html';" class="lightblueBtn">Save</a>
+        </div>
+        
+        <div style="background:#dee1e6;padding:10px;height:65px;border-radius:5px;">
+        <strong>&nbsp; Name your search</strong>
+        	<input id="pop-input" style="border:none;border-radius:0;"/>
+			</div>
+            </div>
+              
+                
+                
+                
+                
+                
+                
+        </div>
+    </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html> 
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>My Listings</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+ 		<script src="js/jquery.constant.js" type="text/javascript"></script>
+<script>
+	function init(){
+		onAppResize();
+		onMyListning();
+	}
+	
+	function onAppResize(){
+		var headerH = $('#headerDiv').height();
+		if(headerH == 0){
+			headerH = 50;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-45;
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+	function onMyListning()
+	{
+	
+	 var newItem="";
+	
+	 var addinquiry = {
+						"login_id"	          :      sessionStorage.login_id
+					}
+					
+		var param1= 'My_Listings='+JSON.stringify(addinquiry);
+		getDetails=getDataFromWebservices(my_listning,param1);
+		
+					var status =getDetails.status;
+					//var reg_id = getStatus.Result;
+					console.log(status);
+					//console.log(Registration_id);
+					
+					
+				if(status=="YES")
+					{
+					
+					ResultCollection = getDetails.Result;
+					console.log(ResultCollection);
+						for(var i=0; i<ResultCollection.length; i++){
+							 
+							getObj = ResultCollection[i];
+							var id= getObj.id;
+							var address= getObj.address;
+							var type = getObj.type;
+							var image= getObj.image;
+							var rent= getObj.rent;						
+							
+			
+	   newItem = newItem +'<div class="search-bg"><a href="#" class="home-icon"><img src="'+image+'" width="80" height="86" alt="" /></a><div class="list-txt-main"><span class="my-list-txt"><b>'+address+'</b><br />'+type+'<br/>Close to amenities</span><span class="pink-txt-list">£'+rent+'</span><a href="#" class="blue-arrow-icon"></div> <img src="images/other/blue-arrow.png" width="35" height="30" alt="" onClick="onListningDetail('+id+');"/></a></div>';
+			}
+	$('#contentDiv').html(newItem);
+				}else
+					{
+					alert("Please fill all the field");
+					console.log("dataerror");
+					}
+}
+	function onListningDetail(property_id)
+	{
+						sessionStorage.property_id=property_id;
+						
+						console.log(sessionStorage.property_id);
+					window.location.replace("my_listing_detail.html");
+	}
+	
+	
+	function closeWin()
+{
+    window.history.back()
+  
+}
+	
+	
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" onClick="closeWin();" class="backBtn">Back</a>
+            <h1 class="headerTitle">My Listings</h1>
+			<a href="#" class="blue-add-btn" onClick="document.location.href='advert1.html';"></a>
+        </div>
+        <!--Header End-->
+        
+        <!--Content Start-->
+        <div data-role="content"  id="contentDiv" style="padding:0px;margin:0px;">	
+        
+		
+		
+        </div>
+        <!--Content End-->
+        </div>
+</body>
+</html>

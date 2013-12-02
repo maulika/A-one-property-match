@@ -1,0 +1,118 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Looking details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+<script src="js/jquery.constant.js"></script>
+<script>
+	function init(){
+		onAppResize();
+	}
+	
+	function onAppResize(){
+		var headerH = document.getElementById('headerDiv').style.height;
+		//var footerH = document.getElementById('footerDiv').style.height;
+		headerH = $('#headerDiv').height();
+		//footerH = $('#footerDiv').height();
+	
+		if(headerH == 0){
+			headerH = 50;
+			//footerH = 45;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-10;
+	
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+	
+	
+	function area1(){
+		
+	var abc = $('#area_info').text();
+			//alert(abc);
+			sessionStorage.location = abc;
+			
+			window.location.replace("area1_look.html");
+		
+		}
+	
+	
+	
+	
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" onClick="document.location.href='advert_house_look.html';" class="backBtn">Back</a>
+            <h1 class="headerTitle">Location</h1>
+        </div>
+        <!--Header End-->
+		
+        <!--Content Start-->
+        <div data-role="content"  id="contentDiv" style="margin:0;padding:0;">	
+        
+        <div class="look-detail-bg-new"><center><p>Select the area(s) you are looking in</p></center></div>
+			
+		<div class="search-bg" >
+		<span class="blue-txt-new" onClick="area1();" id="area_info" >London and Surrounding areas</span>
+		</div>
+		
+		<div class="search-bg" >
+		<span class="blue-txt-new" onClick="area1();" id="area_info">East Anglia</span>
+		</div>
+		
+		<div class="search-bg">
+		<span class="blue-txt-new" onClick="area1();" id="area_info">East Midlands</span>
+		</div>
+		
+		<div class="search-bg">
+		<span class="blue-txt-new" onClick="area1();" id="area_info">North England</span>
+		</div>
+        <div class="search-bg">
+		<span class="blue-txt-new" onClick="area1();" id="area_info">North West England</span>
+		</div>
+		
+		<div class="search-bg">
+		<span class="blue-txt-new" onClick="area1();" id="area_info">South East England</span>
+		</div>
+		
+		<div class="search-bg">
+		<span class="blue-txt-new" onClick="area1();" id="area_info">North East England</span>
+		</div>
+		
+		<div class="search-bg">
+		<span class="blue-txt-new" onClick="area1();" id="area_info">South West England</span>
+		</div>
+        <div class="search-bg">
+		<span class="blue-txt-new" onClick="area1();" id="area_info">West Midlands</span>
+		</div>
+		
+		<div class="search-bg">
+		<span class="blue-txt-new" onClick="area1();" id="area_info">Yorkshire & Humberside</span>
+		</div>
+		
+		<div class="search-bg">
+		<span class="blue-txt-new" onClick="area1();" id="area_info">Northern Ireland</span>
+		</div>
+		
+		<div class="search-bg">
+		<span class="blue-txt-new" onClick="area1();" id="area_info">Scotland</span>
+		</div>
+        
+		
+        
+        
+        </div>
+        <!--Content End-->
+        </div>
+</body>
+</html>

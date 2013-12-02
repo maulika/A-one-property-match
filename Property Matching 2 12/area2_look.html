@@ -1,0 +1,133 @@
+<!DOCTYPE html> 
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>area2 look</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+		<script src="js/jquery.constant.js"></script>
+<script>
+	function init(){
+		onAppResize();
+		sessionStorage.gender;
+		 sessionStorage.lat ;
+   sessionStorage.long;
+	
+	}
+	
+	function onAppResize(){
+		var headerH = $('#headerDiv').height();
+		if(headerH == 0){
+			headerH = 50;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-15;
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+	
+	function area1(){
+		
+	var abc = $('#area_info').text();
+			//alert(abc);
+		sessionStorage.area2 = abc;
+	
+	
+	
+	
+	var addinquiry = {
+									"login_id"                :  sessionStorage.login_id,
+                                 	"who_we_are"                 :sessionStorage.gender,
+                                    "accommodation_type"    :  sessionStorage.accomodation_type,
+                                    "house_type"            :  sessionStorage.house_type,
+                                    "location"              :sessionStorage.location,
+                                    "area1"                 :sessionStorage.area1,
+                                    "area2"                 :sessionStorage.area2,                       
+                                    "latitude"                 :sessionStorage.lat,
+                                    "longitude"                 :sessionStorage.long
+					}
+					
+				var param1= 'Post_Advert_wanted='+JSON.stringify(addinquiry);
+				getDetails=getDataFromWebservices(post_advert_wantedurl,param1);
+		
+					var status =getDetails.status;
+					//var reg_id = getStatus.Result;
+					console.log(status);
+					//console.log(Registration_id);
+					
+					
+				if(status=="YES")
+					{
+					
+					ResultCollection = getDetails.Result;
+					console.log("prop id====="+ResultCollection);
+					sessionStorage.property_id = ResultCollection;
+					
+				}else
+					{
+					alert("Please fill all the field");
+					console.log("dataerror");
+					}
+		
+	
+	
+	
+	window.location.replace("looking-details.html");
+		
+		}
+	
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" onClick="document.location.href='area1_look.html';" class="backBtn">Back</a>
+            <h1 class="headerTitle">Area(s)</h1>
+        </div>
+        <!--Header End-->
+        
+        <div data-role="content"  id="contentDiv" style="margin:0px;padding:0px;">	
+            <div class="look-detail-bg-new"><center><p>Select the area(s) you are looking in</p></center></div>
+                
+            <div class="search-bg">
+            <span class="blue-txt-new" onClick="area1();" id="area_info">Camden and Holloway</span>
+            </div>
+            
+            <div class="search-bg">
+            <span class="blue-txt-new" onClick="area1();" id="area_info">Highbury and Islington</span>
+            </div>
+            
+            <div class="search-bg">
+            <span class="blue-txt-new" onClick="area1();" id="area_info">Edmonton</span>
+            </div>
+            
+            <div class="search-bg">
+            <span class="blue-txt-new" onClick="area1();" id="area_info">Muswell Hill and Wood Green</span>
+            </div>
+            <div class="search-bg">
+            <span class="blue-txt-new" onClick="area1();" id="area_info">Southgate and Palmers Green</span>
+            </div>
+            
+            <div class="search-bg">
+            <span class="blue-txt-new" onClick="area1();" id="area_info">Totteridge and Mill Hill</span>
+            </div>
+            
+            <div class="search-bg">
+            <span class="blue-txt-new" onClick="area1();" id="area_info">Finsbury Park and Tottenham</span>
+            </div>
+            
+            <div class="search-bg">
+            <span class="blue-txt-new" onClick="area1();" id="area_info">Enfield and Winchmore Hill</span>
+            </div>
+            <!--Content Start-->
+        
+        </div>
+        <!--Content End-->
+        </div>
+</body>
+</html>

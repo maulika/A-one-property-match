@@ -1,0 +1,145 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+        <meta charset="utf-8">
+        <title>Send message</title>
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+
+        <script>
+            function init(){
+                onAppResize();
+				
+			sessionStorage.customer_name;
+			
+			//document.getElementById('cname').value = sessionStorage.customer_name;
+			
+			$('#cname').val(sessionStorage.customer_name);
+			
+            }
+            function onAppResize(){
+                var headerH = $('#headerDiv').height();
+                if(headerH == 0){
+                    headerH = 50;
+                }
+				
+                var appHeight = window.innerHeight;
+                var contentH = appHeight-(headerH)-5;
+				$('#contentDiv').height(contentH);
+				$('#mapIframe').height(contentH);
+				
+            }
+			
+		
+		 function onBack(){
+        
+        	//window.history.back();
+			window.location.replace('tenant_details.html');
+        
+        }	
+		
+		function sendMsg(){
+			
+			var message = $('#message_body').val();
+			
+			var addinquiry = {
+				
+					 "login_id"		:	sessionStorage.login_id,
+					"oponent_id"	:   sessionStorage.customer_id,
+					"message"       :	message,
+	"image"   :"http://t0.gstatic.com/images?q=tbn:ANd9GcRsb9caob_usPwjIVeeab62v5ENZpeUAHbmnK9jS4_h5fHCTfpj"
+
+             }
+		
+		
+		var param1= 'Contact='+JSON.stringify(addinquiry);
+		getDetails=getDataFromWebservices(Contact,param1);
+		
+		
+		var status =getDetails.status;
+					//var reg_id = getStatus.Result;
+					console.log(status);
+					//console.log(Registration_id);
+					newItem="";
+					
+					var ResultCollection = getDetails.Result;
+					
+					
+				if(status=="YES")
+					{
+						for(var i=0; i<ResultCollection.length; i++){
+							var abc = ResultCollection[i].inbox_detail[i].message;
+							alert(abc);
+							
+							}
+						
+						
+					}else
+					{
+					alert("Please fill all the field");
+					console.log("dataerror");
+					}
+			
+			
+			
+			}			
+			
+        </script>
+        
+       
+        
+        
+	</head> 
+    
+    <body onResize="onAppResize()" onLoad="init()"> 
+    	<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+            <!--Header Start-->
+            <div id="headerDiv" data-role="header" class="myHeaderBG">
+                <a href="#" onClick= "onBack();" class="backBtn">Back</a>
+                <h1 class="headerTitle">Message to Mary</h1>
+                
+            </div>
+            <!--Header End-->
+            
+            <!--Content Start-->
+            <div data-role="content"  id="contentDiv" >
+           <strong> To:</strong> &nbsp;<strong id="cname"></strong>
+           <br/>
+            <strong>Subject: Lovely 2 bedroom apartment</strong>
+            <br/><br/>
+                     
+           <textarea  
+           id="message_body" 
+           style="border:1px solid #000;width:93%;height:inherit;background:#FFF;padding-bottom:50px;">
+           </textarea>
+           
+           <!-- <div style="border:1px solid #000;width:98%;height:inherit;background:#FFF;padding-bottom:50px;">
+            </div>-->
+	            <br/><br/>	
+            </div>
+            <!--Content End-->
+            
+            
+            <!--Footer Start-->
+            <div id="footerDiv" data-role="footer">
+            <img src="images/house-bg.png" height="40" width="40" 
+            style="float:left;margin-left:5px;"/>
+            <a href="#" class="lightblueBtn" style="float:right;margin-top:5px;" onClick="sendMsg();">send</a>
+            
+        </div>
+            
+            <!--Footer End-->
+                  
+                
+                
+            
+            
+            
+            
+            
+            </div>
+    </body>
+</html>

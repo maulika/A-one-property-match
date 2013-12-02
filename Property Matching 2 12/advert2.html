@@ -1,0 +1,121 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Advert2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+
+<script>
+
+		
+		
+	var acco = '';	
+	function init(){
+		onAppResize();
+		sessionStorage.advertise_type = 'rented';
+		
+		
+	}
+	
+	function onAppResize(){
+		var headerH = $('#headerDiv').height();
+		if(headerH == 0){
+			headerH = 50;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-5;
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+	
+	
+	function onAccomodation(acco){
+		
+		if(acco == '1'){
+			var accomodation_type = 'House';
+			sessionStorage.accomodation_type = accomodation_type ;
+			//alert(accomodation_type);
+			window.location.replace("advert3.html");
+			}
+		
+		
+		if(acco == '2'){
+			var accomodation_type = 'Bunglow';
+			sessionStorage.accomodation_type = accomodation_type ;
+			//alert(accomodation_type);
+			window.location.replace("advert3.html");
+			}
+			
+		if(acco == '3'){
+			var accomodation_type = 'Room';
+			sessionStorage.accomodation_type = accomodation_type ;
+			//alert(accomodation_type);
+			window.location.replace("advert3.html");
+			}
+			
+		if(acco == '4'){
+			var accomodation_type = 'Flat';
+			sessionStorage.accomodation_type = accomodation_type ;
+			//alert(accomodation_type);
+			window.location.replace("advert3.html");
+			}
+		
+		
+		
+		}
+		
+		
+	
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+	<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" onClick="document.location.href='advert1.html';" class="backBtn">Back</a>
+            <h1 class="headerTitle">Accommodation</h1>
+        </div>
+        <!--Header End-->
+    
+	    <!--Content Start-->
+        <div data-role="content"  id="contentDiv" style="margin:0px;padding:0px;">
+            <h2 class="blue-txt" style="padding:0 0 0 15px;">Type of accommodation</h2>
+            <div class="search-bg"><a href="#" class="male-grey-icon"> <img src="images/other/home-grey.png" width="35" height="35" alt="" /></a>
+                <div class="advert-box-main2">
+                    <span class="black-txt">House</span>
+                    <span class="grey-txt-detail">Use this option if you are advertising a house to rent</span>
+                </div>
+                <a href="#" id="blue_arrow" class="blue-arrow-icon3" ><img src="images/other/blue-arrow.png" width="35" height="30" alt="" onClick="onAccomodation('1');"/></a>
+            </div>
+            <div class="search-bg"><a href="#" class="male-grey-icon"> <img src="images/other/bunglow.png" width="35" height="35" alt="" /></a>
+                <div class="advert-box-main2">
+                    <span class="black-txt">Bungalow</span>
+                    <span class="grey-txt-detail">Use this option if you are advertising a bungalow to rent</span>
+                </div>
+                <a href="#" id="blue_arrow" class="blue-arrow-icon3"> <img src="images/other/blue-arrow.png" width="35" height="30" alt="" onClick="onAccomodation('2');"/></a>
+            </div>
+            <div class="search-bg"><a href="#" class="male-grey-icon"> <img src="images/other/people.png" width="40" height="28" alt="" /></a>
+                <div class="advert-box-main2">
+                    <span class="black-txt">Room</span>
+                    <span class="grey-txt-detail">Use this option if you are advertising a room or rooms to rent</span>
+                </div>
+                <a href="#" id="blue_arrow" class="blue-arrow-icon3"> <img src="images/other/blue-arrow.png" width="35" height="30" alt="" onClick="onAccomodation('3');"/></a>
+            </div>
+            <div class="search-bg"><a href="#" class="male-grey-icon"> <img src="images/other/flat.png" width="30" height="50" alt="" /></a>
+                <div class="advert-box-main2">
+                    <span class="black-txt">Flat</span>
+                    <span class="grey-txt-detail">Use this option if you are advertising a flat to rent</span>
+                </div>
+                <a href="#" id="blue_arrow" class="blue-arrow-icon3"> <img src="images/other/blue-arrow.png" width="35" height="30" alt=""  onClick="onAccomodation('4');"/></a>
+            </div>
+		
+        </div> 
+        <!--Content End-->
+        </div>
+</body>
+</html>

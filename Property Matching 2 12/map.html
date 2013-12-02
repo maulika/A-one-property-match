@@ -1,0 +1,330 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+        <meta charset="utf-8">
+        <title>Map</title>
+        
+        <link rel="stylesheet"  href="css/panel/jquery.mobile-1.3.0-beta.1.css">
+		<link rel="stylesheet" href="css/panel/jqm-demos.css">
+		<script src="js/panel/jquery-1.7.1.min.js"></script>
+		<script src="js/panel/jquery.mobile-1.3.0-beta.1.js"></script>
+           
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css" />
+        <script src="js/jquery.constant.js" type="text/javascript"></script>
+        <script src="js/jquery.cookie.js" type="text/javascript"></script>
+         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+		
+		<script>
+			var map;
+			var locations;
+			var ResultCollection;
+            function init(){
+			
+			onAppResize();
+				/*map = new google.maps.Map(document.getElementById('contentDiv'), {
+						  zoom: 1,
+						  center: new google.maps.LatLng(8.841651, 8.841651),
+						  mapTypeId: google.maps.MapTypeId.ROADMAP
+						});*/
+           	 onMapLoad();
+			
+			if(sessionStorage.login_id == null){
+				document.getElementById('save_search').style.visibility = 'hidden';
+				}
+			
+			}
+			
+			
+            function onAppResize(){
+                var headerH = $('#headerDiv').height();
+                if(headerH == 0){
+                    headerH = 50;
+                }
+				
+                var appHeight = window.innerHeight;
+                var contentH = appHeight-(headerH)-5;
+				$('#contentDiv').height(contentH);
+				$('#mapIframe').height(contentH);
+				
+            }
+			
+			function onSlideOPENClick(){
+				$('#slidePopUp').show();
+				$('#slidePopUp').animate({
+					height:(window.innerHeight+"px"),
+				},500,function(){});
+					
+				//$('#slidePopUp').css('height',);
+			}
+			
+			function onPopUpCloseClick(){
+				$('#slidePopUp').show();
+				$('#slidePopUp').animate({
+					height:(0+"px"),
+				},500,function(){
+					$('#slidePopUp').hide();
+				});
+			}
+			
+	function onMapLoad(){
+		
+		var addinquiry = {
+                               "Login_id" : sessionStorage.login_id,
+                                                     
+                                                        
+						}
+						
+						
+				var param1= 'GetMap='+JSON.stringify(addinquiry);
+				getDetails=getDataFromWebservices(getmapurl,param1);
+				//getDetails=getDataFromWebservices(loginurl,param1);
+				var status =getDetails.status;
+				console.log(status);
+				
+				if(status=="YES")
+						{
+							ResultCollection = getDetails.Result;
+					
+					
+							//var newItem;
+							for(var i=0; i<ResultCollection.length; i++){
+								var LoginData =  ResultCollection[i];
+								//var lat = LoginData.latitude;
+								//var lang = LoginData.longitude;
+						
+						
+						locations = [
+							['DESCRIPTION',  ResultCollection[i].latitude, ResultCollection[i].longitude, i],
+							
+						];
+						
+						
+						mapDone(locations);
+						
+			}
+							
+				/*var locations = [
+							['DESCRIPTION', 41.926979, 12.517385, 3],
+							['DESCRIPTION', 41.914873, 12.506486, 2],
+							['DESCRIPTION', 61.918574, 12.507201, 1]
+							
+						];*/
+					
+					
+					
+							
+				}
+		
+		
+		
+		} 
+			/*var locations;
+			var addinquiry = {
+                                                        "Login_id"		:	"",
+                                                     
+                                                        
+								 }
+
+				var param1= 'GetMap='+JSON.stringify(addinquiry);
+				getDetails=getDataFromWebservices(getmapurl,param1);
+				//getDetails=getDataFromWebservices(loginurl,param1);
+				var status =getDetails.status;
+			console.log(status);
+				if(status=="YES")
+					{
+					ResultCollection = getDetails.Result;
+					
+					
+					var newItem;
+					for(var i=0; i<ResultCollection.length; i++){
+						var LoginData =  ResultCollection[i];
+						var lat = LoginData.latitude;
+						var lang = LoginData.longitude;
+					
+						locations = [['Bondi Beach', lat, lang, 4]];
+					}
+					
+					var marker, i;
+				
+					for (i = 0; i < locations.length; i++) {  
+					  marker = new google.maps.Marker({
+						position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+						map: map
+					  });
+					  marker.setIcon('icon.png')
+					  
+									  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+							return function() {
+							  infowindow.setContent(locations[i][0]);
+							  infowindow.open(map, marker);
+							}
+						  })(marker, i));
+       					
+				}
+				
+				
+				
+				}*/
+				
+				
+				function mapDone(locations){
+						window.map = new google.maps.Map(document.getElementById('map'), {
+							mapTypeId: google.maps.MapTypeId.ROADMAP
+						});
+					
+						var infowindow = new google.maps.InfoWindow();
+					
+						var bounds = new google.maps.LatLngBounds();
+					
+							for (i = 0; i < locations.length; i++) {
+							marker = new google.maps.Marker({
+								position: new google.maps.LatLng(locations[i][4]),
+								map: map
+							});
+						
+					
+							bounds.extend(marker.position);
+					
+							google.maps.event.addListener(marker, 'click', (function (marker, i) {
+								return function () {
+									infowindow.setContent(locations[i][0]);
+									infowindow.open(map, marker);
+								}
+							})(marker, i));
+						}
+					
+						map.fitBounds(bounds);
+					
+						var listener = google.maps.event.addListener(map, "idle", function () {
+							map.setZoom(3);
+							google.maps.event.removeListener(listener);
+						});			
+							
+					}
+				
+        </script>
+		
+		<script>
+
+
+//'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' + 'callback=onMapLoad';
+	
+
+
+//window.onload = loadScript;
+
+
+
+function onSaveSearch(){
+			
+			var save_input = $('#pop-input').val();
+			
+			var addinquiry = {
+									"search_key"		:	 sessionStorage.postcode,//area,postcode
+									"search_name"       : 	 save_input,
+									"login_id"          :   sessionStorage.login_id,
+									"search_type"		:	"Tenants"//Tenants / Property
+                                                        
+							}
+						
+					var param1= 'search_save='+JSON.stringify(addinquiry);
+					getStatus=getDataFromWebservices(search_saveurl,param1);
+			
+						var status =getStatus.status;
+						//var reg_id = getStatus.Result;
+						console.log(status);
+						//console.log(Registration_id);
+						
+						
+					if(status=="YES")
+					{
+						ResultCollection = getStatus.Result;
+						//alert(save_input);	
+							
+							
+					}
+			
+			
+			
+			}
+
+
+
+
+
+</script>
+  
+  
+	</head> 
+    
+    <body onResize="onAppResize()" onLoad="init()"> 
+    	<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+            <!--Header Start-->
+            <div id="headerDiv" data-role="header" class="myHeaderBG">
+                <a href="#" onClick="document.location.href='search_results_tenants.html';" class="backBtn">Back</a>
+                <h1 class="headerTitle">Map Results</h1>
+                <a href="#"  onClick="onSlideOPENClick()" class="lightblueBtn">Options</a>
+            </div>
+            <!--Header End-->
+            
+            <!--Content Start-->
+            <div data-role="content"  id="contentDiv" style="width: 500px; height: 500px">
+          
+            <div id="map" style="width: 500px; height: 500px;"></div>
+	           
+            </div>
+            <!--Content End-->
+            
+            <div id="slidePopUp" hidden="true" 
+            style="width:100%;background-image:url(images/bg_trans.png);position:fixed;top:0px;z-index:100; height:auto;">
+            	<!--<button id="popUpCloseBtn" onClick="onPopUpCloseClick()">Close</button>-->
+                <!--Header Start-->
+            <div id="headerDiv" data-role="header" class="myHeaderBG">
+                <a href="#" onClick="document.location.href='search_results_tenants.html';" class="backBtn">Back</a>
+                <h1 class="headerTitle">Search Options</h1>
+                <a href="#" id="popUpCloseBtn" onClick="onPopUpCloseClick()" class="lightblueBtn">Hide</a>
+            </div>
+            <!--Header End-->
+                
+                <div style="width:100%; height:auto; ">
+                	<div class="all-map-images"><br /><br />
+                        <img src="images/other/map-view.png" width="100%" height="auto" alt="" onClick="document.location.href='map.html';" style="padding-bottom:9px;margin:13px 0 0;"/><br/>
+                        <img src="images/other/filter.png" width="100%" height="auto" alt="" 
+                        onClick="document.location.href='search_filters_tenant.html'" style="padding-bottom:9px;margin:13px 0 0;"/><br/>
+                        
+                   <a href="#popupBasic" data-rel="popup">
+                      <img id="save_search" src="images/other/save-search.png" width="100%" height="auto" alt=""
+                         style="padding-bottom:9px;margin:13px 0 0;"/>
+                   
+                         </a>
+                   
+                    </div>
+                </div></div>
+            
+            
+            
+               <div data-role="popup" id="popupBasic" 
+             style="background:#101c31;padding:10px;height:143px;width:92%;">
+			<div id="popheader" data-role="header" 
+            style="background:#101c31; height:48px">
+             <a href="#" class="blueBtn" onClick="document.location.href='#';">Cancel</a>
+            <h1 class="headerTitle"></h1>
+            <a href="#popupBasic" onClick="onSaveSearch();" class="lightblueBtn">Save</a>
+        </div>
+        
+        <div style="background:#dee1e6;padding:10px;height:65px;border-radius:5px;">
+        <strong>&nbsp; Name your search</strong>
+        	<input id="pop-input"/>
+			</div>
+            
+            </div>   
+                
+                
+            
+            
+            
+            
+            
+            </div>
+    </body>
+</html>

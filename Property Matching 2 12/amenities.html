@@ -1,0 +1,287 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>amenities tenant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery.constant.js"></script>
+
+<script>
+		var loginId =sessionStorage.login_id;
+		var tenantId = sessionStorage.tenants_id;
+	
+	function init(){
+		onAppResize();
+		tenantAmenities();
+		
+	}
+	
+	function onAppResize(){
+		var headerH = document.getElementById('headerDiv').style.height;
+		//var footerH = document.getElementById('footerDiv').style.height;
+		headerH = $('#headerDiv').height();
+		//footerH = $('#footerDiv').height();
+	
+		if(headerH == 0){
+			headerH = 50;
+			//footerH = 45;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-5;
+	
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+	
+	
+	function tenantAmenities(){
+		
+		var getDetails = '';
+		var newItem="";
+		
+		var addinquiry = {
+                                    "id"        :sessionStorage.property_id,
+                                    "page"		:"Amenities"//Details//Amenities//Description
+                                                      	 }
+		
+		var param1= 'Listning_Description='+JSON.stringify(addinquiry);
+		getDetails=getDataFromWebservices(my_property_detail,param1);
+		
+					var status =getDetails.status;
+					//var reg_id = getStatus.Result;
+					console.log(status);
+					//console.log(Registration_id);
+					
+					
+				if(status=="YES")
+					{
+					
+					ResultCollection = getDetails.Result;
+					console.log(ResultCollection);
+						for(var i=0; i<ResultCollection.length; i++){
+							 
+							getObj = ResultCollection[i];
+							
+							// var amenities = new Array( getObj.amenities);
+							var amenities =getObj.amenities;
+							 
+							 console.log(amenities);
+							 
+							 var splited = amenities.split(",");
+							 console.log(splited);
+							 
+							 for(var i=0; i<splited.length; i++){
+								 
+								 	console.log(splited[i]+" "+i);
+								 
+								 }
+							
+							console.log(amenities.indexOf('furnished'));
+							
+							if(amenities.indexOf('furnished')>0)
+							{
+								document.getElementById('furnished').src= "images/other/green-tick.png";
+							}
+							if(amenities.indexOf('parking')>0)
+							{
+								document.getElementById('parking').src= "images/other/green-tick.png";
+							}
+							
+							if(amenities.indexOf('garage')>0)
+							{
+								document.getElementById('garage').src= "images/other/green-tick.png";
+							}
+							
+							if(amenities.indexOf('internet')>0)
+							{
+								document.getElementById('internet').src= "images/other/green-tick.png";
+							}
+							
+							if(amenities.indexOf('wireless')>0)
+							{
+								document.getElementById('wireless').src= "images/other/green-tick.png";
+							}
+							
+							if(amenities.indexOf('garden/terrace')>0)
+							{
+								document.getElementById('garden').src= "images/other/green-tick.png";
+							}
+							
+							if(amenities.indexOf('satellite/cable')>0)
+							{
+								document.getElementById('satellite').src= "images/other/green-tick.png";
+							}
+							
+							
+							if(amenities.indexOf('Pets')>0)
+							{
+								document.getElementById('pets').src= "images/other/green-tick.png";
+							}
+							
+							
+							
+							
+							if(amenities.indexOf('working tenant')>0)
+							{
+								document.getElementById('working_tenant').src= "images/other/green-tick.png";
+							}
+							
+							if(amenities.indexOf('student')>0)
+							{
+								document.getElementById('student').src= "images/other/green-tick.png";
+							}
+							if(amenities.indexOf('dss')>0)
+							{
+								document.getElementById('dss').src= "images/other/green-tick.png";
+							}
+						}
+							
+				}else
+					{
+					alert("Please fill all the field");
+					console.log("dataerror");
+					}
+						$('#title').html(sessionStorage.title);
+	}
+	
+	
+	function onFavourite(){
+		
+		
+		var addinquiry = {
+                             "login_id"		:	sessionStorage.postcode,//area,postcode
+                             "type_id"      :     id,//selected tenents/advert id
+                             "Type"         :       "Tenants"//Tenants / Property
+                          }
+		
+		
+		
+		var param1= 'add_to_fevorite='+JSON.stringify(addinquiry);
+		getDetails=getDataFromWebservices(add_to_fevorite,param1);
+		
+					var status =getDetails.status;
+					//var reg_id = getStatus.Result;
+					console.log(status);
+					//console.log(Registration_id);
+					
+					
+				if(status=="YES")
+					{
+					}
+		
+		
+		}
+	
+	
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" onClick="document.location.href='my_listing_detail.html';" class="backBtn">Back</a>
+            <h1 class="headerTitle" id="title">Large Spacious 2...</h1>
+            <a href="#" id="star_image" class="greystarBtn" onClick="onFavourite();"></a>
+        </div>
+        <!--Header End-->
+        <!--Content Start-->
+        <div data-role="content"  id="contentDiv">	
+            
+            <div class="tab_button" style="width:100%;padding-bottom:20px;"> 
+            <ul style="width:100%;margin:0;padding:0;">
+            <li  class="tab_sky"><a href="#" style="color:#FFF;text-decoration:none;font-weight:normal;font-size:12px;" onClick="document.location.href='description.html';">Description</a></li>
+            <li class="tab_sky"><a href="#" style="color:#FFF;text-decoration:none;font-weight:normal;font-size:12px;"  onClick="document.location.href='indetails.html';">Details</a></li>
+            <li class="tab_blue"><a href="#" style="color:#FFF;text-decoration:none;font-weight:normal;font-size:12px;" onClick="document.location.href='amenities.html';">Amenities</a></li>
+            </ul>
+            </div>
+<p>
+<div class="amenities_input">
+<img id="furnished" class="left_status_symbol" src="images/other/close.png" width="50" height="45" style="margin-left: -10px;
+    margin-top: -5px;"/> &nbsp; Furnished
+</div>
+</p>
+
+<p>
+<div class="amenities_input">
+<img  id="parking" class="left_status_symbol" src="images/other/close.png" width="50" height="45" style="margin-left: -10px;
+    margin-top: -5px;"/> &nbsp; Parking
+</div>
+</p>
+
+<p>
+<div class="amenities_input">
+<img id="garage" class="left_status_symbol" src="images/other/close.png" width="50" height="45" style="margin-left: -10px;
+    margin-top: -5px;"/> &nbsp; Garage
+</div>
+</p>
+
+<p>
+<div class="amenities_input">
+<img id="internet" class="left_status_symbol" src="images/other/close.png" width="50" height="45" style="margin-left: -10px;
+    margin-top: -5px;"/> &nbsp; Internet
+</div>
+</p>
+
+<p>
+<div class="amenities_input">
+<img id="wireless" class="left_status_symbol"src="images/other/close.png" width="50" height="45" style="margin-left: -10px;
+    margin-top: -5px;"/> &nbsp; Wireless
+</div>
+</p>
+
+<p>
+<div class="amenities_input">
+<img id="garden" class="left_status_symbol" src="images/other/close.png" width="50" height="45" style="margin-left: -10px;
+    margin-top: -5px;"/> &nbsp; Garden/Terrace
+</div>
+</p>
+
+<p>
+<div class="amenities_input">
+<img id="satellite" class="left_status_symbol" src="images/other/close.png" width="50" height="45" style="margin-left: -10px;
+    margin-top: -5px;"/> &nbsp; Satellite/Cable
+</div>
+</p>
+
+<p>
+<div class="amenities_input">
+<img id="pets" class="left_status_symbol" src="images/other/close.png" width="50" height="45" 
+style="margin-left: -10px; margin-top: -5px;"/> &nbsp; Pets
+</div>
+</p>
+
+<p>
+<div class="amenities_input">
+<img id="working_tenant" class="left_status_symbol" src="images/other/close.png" width="50" height="45" style="margin-left: -10px;
+    margin-top: -5px;"/> &nbsp; Working Tenant
+</div>
+</p>
+
+<p>
+<div class="amenities_input">
+<img id="student" class="left_status_symbol" src="images/other/close.png" width="50" height="45" style="margin-left: -10px;
+    margin-top: -5px;"/> &nbsp; Student
+</div>
+</p>
+
+<p>
+<div class="amenities_input">
+<img id="dss" class="left_status_symbol" src="images/other/close.png" width="50" height="45" style="margin-left: -10px;
+    margin-top: -5px;"/> &nbsp; DSS
+</div>
+</p>
+
+
+
+
+
+        </div>
+        <!--Content End-->
+        </div>
+</body>
+</html>

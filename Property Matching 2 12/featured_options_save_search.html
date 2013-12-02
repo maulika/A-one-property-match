@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Featured Options save search</title>
+ <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+        <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+<script>
+	function init(){
+		onAppResize();
+	}
+	function onAppResize(){
+		var headerH = document.getElementById('headerDiv').style.height;
+		//var footerH = document.getElementById('footerDiv').style.height;
+		headerH = $('#headerDiv').height();
+		//footerH = $('#footerDiv').height();
+		if(headerH == 0){
+			headerH = 50;
+			//footerH = 45;
+		}
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-45;
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+ 
+                <a href="#" onClick="document.location.href='quick_panel_out.html';" class="backBtn">Back</a>
+                <h1 class="headerTitle">Search Options</h1>
+                <a href="#" onClick="document.location.href='#';" class="lightblueBtn">Hide</a>
+            </div>
+        <!--Header End-->
+        <!--Content Start-->
+        <div data-role="content"  id="" class="" style="padding:0; height:auto !important;">
+        	<!--<img src="images/black-trans.png" width="100%" height="auto" alt="" />-->
+            	<div class="black-slider1" style="width:100%; height:auto; ">
+                	<div class="all-map-images"><br /><br />
+                        <img src="images/other/map-view.png" width="100%" height="auto" alt="" onClick="document.location.href='map_cpa.html';"/><br /><br />
+                        <img src="images/other/photos.png" width="100%" height="auto" alt="" 
+onClick="document.location.href='featured.html';"/><br /><br />
+                        <img src="images/other/list.png" width="100%" height="auto" alt=""     onClick="document.location.href='search_filters_on.html';" /><br /><br />
+                        <img src="images/other/filter.png" width="100%" height="auto" alt=""   onClick="document.location.href='search_results.html';"/><br /><br />
+                        <img src="images/other/save-search.png" width="100%" height="auto" alt=""  onClick="document.location.href='#';"/>
+                    </div>
+                </div>
+            </div>
+        <!--Content End-->
+</div>
+</body>
+</html>

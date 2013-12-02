@@ -1,0 +1,80 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+        <meta charset="utf-8">
+        <title>Featured Options</title>
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+        <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+        <script>
+            function init(){
+                onAppResize();
+            }
+            function onAppResize(){
+                var headerH = $('#headerDiv').height();
+                if(headerH == 0){
+                    headerH = 50;
+                }
+				
+                var appHeight = window.innerHeight;
+                var contentH = appHeight-(headerH)-45;
+				$('#contentDiv').height(contentH);
+            }
+			
+			function onSlideOPENClick(){
+				$('#slidePopUp').show();
+				$('#slidePopUp').animate({
+					height:(window.innerHeight+"px"),
+				},500,function(){});
+					
+				//$('#slidePopUp').css('height',);
+			}
+			
+			function onPopUpCloseClick(){
+				$('#slidePopUp').show();
+				$('#slidePopUp').animate({
+					height:(0+"px"),
+				},500,function(){
+					$('#slidePopUp').hide();
+				});
+			}
+
+        </script>
+	</head> 
+    
+    <body onResize="onAppResize()" onLoad="init()"> 
+        <div data-role="page" id="page" class="myContentBG">
+            <!--Header Start-->
+            <div id="headerDiv" data-role="header" class="myHeaderBG">
+                <a href="#" onClick="document.location.href='search_results_tenants.html';" class="backBtn">Back</a>
+                <h1 class="headerTitle">Search Options</h1>
+                <a href="#" onClick="onSlideOPENClick()" class="lightblueBtn">Hide</a>
+            </div>
+            <!--Header End-->
+            
+            <!--Content Start-->
+            <div data-role="content" id="contentDiv" style="padding:20px;">
+                <div style="width:100%;">
+                    <div>
+                        <img src="images/other/map-view.png" width="100%" height="auto" alt="" onClick="document.location.href='map.html';"/><br/>
+                        <img src="images/other/photos.png" width="100%" height="auto" alt="" 
+                        onClick="document.location.href='search_filters_tenant.html'"/><br/>
+                        <img src="images/other/save-search.png" width="100%" height="auto" alt=""
+                        onClick="document.location.href='login_screen.html'"/>
+                    </div>
+                </div>        
+            </div>
+            <!--Content End-->
+            
+            <div id="slidePopUp" hidden="true" style="width:100%;background-color:#666;position:fixed;top:0px;z-index:100;">
+            	<button id="popUpCloseBtn" onClick="onPopUpCloseClick()">Close</button>
+                
+                <h2 style="color:#FFF;"> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *</h2>
+            </div>
+            
+        </div>
+    </body>
+    
+</html>

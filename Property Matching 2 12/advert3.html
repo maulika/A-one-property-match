@@ -1,0 +1,113 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Advert3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+<script src="js/jquery.constant.js"></script>
+<script>
+	function init(){
+		
+		sessionStorage.house_type = 'detached';
+		
+		
+		onAppResize();
+		var accomodation_type = sessionStorage.accomodation_type;
+		//alert(accomodation_type);
+		
+		if(accomodation_type == 'House'){
+			document.getElementById('image_tag').src = 'images/other/home-grey.png';
+			document.getElementById('acc_type').innerHTML = '<b>House</b><br />Please choose the type of house that you are offering for rent';
+			
+			document.getElementById('head').innerHTML = "Type of House";
+			}
+		
+		if(accomodation_type == 'Bunglow'){
+			document.getElementById('image_tag').src = 'images/other/bunglow.png';
+			document.getElementById('acc_type').innerHTML = '<b>Bunglow</b><br />Please choose the type of bunglow that you are offering for rent';
+			document.getElementById('head').innerHTML = "Type of Bunglow";
+			}
+		
+		if(accomodation_type == 'Room'){
+			
+			document.getElementById('image_tag').src = 'images/other/people.png';
+			document.getElementById('acc_type').innerHTML = '<b>Room</b><br />Please choose the type of room that you are offering for rent';
+			
+			document.getElementById('head').innerHTML = "Type of Room";
+			
+			}
+		
+		if(accomodation_type == 'Flat'){
+			
+			document.getElementById('image_tag').src = 'images/other/flat.png';
+			document.getElementById('acc_type').innerHTML = '<b>Flat</b><br />Please choose the type of flat that you are offering for rent';
+			document.getElementById('head').innerHTML = "Type of Flat";
+			}
+	}
+	
+	function onAppResize(){
+		var headerH = $('#headerDiv').height();
+		if(headerH == 0){
+			headerH = 50;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-5;
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+	<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" onClick="document.location.href='advert2.html';" class="backBtn">Back</a>
+            <h1 class="headerTitle">Accommodation</h1>
+            <a href="#" onClick="document.location.href='advert4.html';" class="lightblueBtn">Next</a>
+        </div>
+        <!--Header End-->
+    
+	    <!--Content Start-->
+        <div data-role="content"  id="contentDiv" style="margin:0px;padding:0px;">
+            <h2 class="blue-txt" style="padding:0 0 0 15px;" id="head"></h2>
+            <br/>
+           
+           
+            <div class="search-bg">
+            <a href="#" class="home-grey-icon"> 
+            <img  id ="image_tag" src="images/other/home-grey.png" width="40" height="40" alt="" /></a>
+             <div class="advert-box-main">
+                    <span class="my-list-txt" id="acc_type"><b>House</b><br />
+					Please choose the type of house that you are offering for rent
+                    </span>
+                </div>
+            </div>
+            
+            
+            <br/> <br/> <br/>  <br/> <br/> <br/> <br/>
+            <div class="advert-white-bg" style="  margin-left: 10px;
+    margin-top: 10px;
+    width: 90%;">
+            	<div class="detach">Detached</div>
+                <div class="grey-line"></div>
+                <div class="detach">Semi Detached<img src="images/other/correct.png" width="18" height="16" alt="" style="float: right;margin: 0 23px 0 0; cursor:pointer;" /></div>
+                <div class="grey-line"></div>
+                <div class="detach">Terraced</div>
+            </div>
+		<br/>
+        <center>
+        <div class="middle-btn-pink" style="width:93%;">
+        	<a class="pink-advert-button" onClick="document.location.href='advert4.html';">
+            Continue</a>
+        </div></center>
+        
+        </div> 
+        <!--Content End-->
+        </div>
+</body>
+</html>

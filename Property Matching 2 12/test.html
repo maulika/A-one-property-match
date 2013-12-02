@@ -1,0 +1,216 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Quick Panel Out</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+		<script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <link rel="stylesheet"  href="css/panel/jquery.mobile-1.3.0-beta.1.css">
+		<link rel="stylesheet" href="css/panel/jqm-demos.css">
+		<script src="js/panel/jquery-1.7.1.min.js"></script>
+		<script src="js/panel/jquery.mobile-1.3.0-beta.1.js"></script>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+        
+		<script>
+            function init(){
+                onAppResize();
+            }
+            
+            function onAppResize(){
+                var headerH = $('#headerDiv').height();
+				var secondHeaderH = $('#secondHeaderDiv').height();
+                if(headerH == 0){
+                    headerH = 50;
+                }
+                
+                var appHeight = window.innerHeight;
+                var contentH = appHeight-(headerH+secondHeaderH)-15;
+                $('#contentDiv').height(contentH);
+            }
+			
+			function onSlideOPENClick(){
+				$('#slidePopUp').show();
+				$('#slidePopUp').animate({
+					height:(window.innerHeight+"px"),
+				},500,function(){});
+					
+				//$('#slidePopUp').css('height',);
+			}
+			
+			function onPopUpCloseClick(){
+				$('#slidePopUp').show();
+				$('#slidePopUp').animate({
+					height:(0+"px"),
+				},500,function(){
+					$('#slidePopUp').hide();
+				});
+			}
+			
+			
+        </script>
+	</head>
+
+    <body onResize="onAppResize()" onLoad="init()"> 
+        <div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        		<!--Header Start-->
+                <div id="headerDiv" data-role="header" class="myHeaderBG">
+                    <a href="#nav-panel" class="leftHeaderNew"></a>
+                    <h1 class="headerTitle">Featured</h1>
+                    <a href="#" onClick="onSlideOPENClick()" class="lightblueBtn">Options</a>
+                </div>
+                <!--Header End-->
+                
+                
+                    
+                <!--Content Start-->
+                <div data-role="content"  id="contentDiv">
+                <form method="post">
+                	<div class="logo-search"><img src="images/logo.png" alt="" class="logo-img" /></div>
+                	<div class="detail"><input class="info" type="text" placeholder="Area,Postcode" style=" height: 35px;"/></div>
+                
+                    <a href="#" onClick="alert('Coming Soon')" >
+                        <img src="images/other/search-grey.png" style="width:100%;height:50px; border-bottom:1px solid #C9C9C9;padding:0 0 12px;margin: 7px 0;"/>
+                    </a>
+                    
+                    <a href="#" onClick="document.location.href='quick_panel_out.html';" >
+                         <img src="images/other/search-blue.png" style="width:100%;height:50px;"/>
+                    </a>
+                          
+                    <a href="#" onClick="document.location.href='search_results_tenants.html';" >
+                        <img src="images/other/search-pink.png" style="width:100%;height:50px;border-bottom:1px solid #C9C9C9;padding:0 0 12px;margin: 7px 0;"/>
+                    </a>
+    			</form>
+                
+                <div class="twobuttons">
+                    <a href="#" onclick="window.open('https://www.facebook.com','_system','location=yes')">
+                    	<img src="images/other/fb.png" width="33" height="33" alt="" style="margin-right: 15px;" />
+                    </a>
+                    <a href="#" onclick="window.open('https://www.twitter.com','_system','location=yes')">
+                    	<img src="images/other/twitter.png" width="33" height="33" alt="" />
+                     </a>
+                </div>
+            </div>
+                <!--Content End-->
+                
+                <div data-role="panel" data-position="left" data-position-fixed="false" id="nav-panel" data-theme="a">
+                
+					<ul data-role="listview" data-theme="a" data-divider-theme="a" style="margin-top:-16px;" class="nav-search">
+						<!--<li data-icon="delete" style="background-color:#111;">
+							<a href="#" data-rel="close">Close menu</a>
+						</li>-->
+                        <li data-icon-position="left" onClick="document.location.href='search.html';" data-rel="close">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/searchIcon.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">Search</span>
+                            </div>
+						</li>
+                        
+                        <li data-icon-position="left" onClick="document.location.href='login_screen.html';" data-rel="close">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/dss-off.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">Sign Up/Log in</span>
+                            </div>
+						</li>
+                         <li data-icon-position="left" onClick="document.location.href='my-account.html';" data-rel="close">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/dss-off.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">My Account</span>
+                            </div>
+						</li>
+                        
+                        
+                        <li data-icon-position="left" onClick="document.location.href='my-msgs.html';" data-rel="close">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/dss-off.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">My inbox</span>
+                            </div>
+						</li>
+                        
+                        <li data-icon-position="left" onClick="document.location.href='my-favorites.html';" data-rel="close">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/dss-off.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">Favourites</span>
+                            </div>
+						</li>
+                        
+                        
+                        <li data-icon-position="left" onClick="document.location.href='my-listings.html';" data-rel="close">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/dss-off.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">Listing</span>
+                            </div>
+						</li>
+                        
+						
+                        <li data-icon-position="left" onClick="document.location.href='advert1.html';" data-rel="close">
+							<div style="width:100%;height:auto;">
+                                <img src="images/other/postanAdvertIcon.png" width="30px" height="30px"/>
+                                <span style="padding-left:10px;vertical-align: super;">Post an Advert</span>
+                            </div>
+						</li>
+                        
+                        
+                        
+					</ul>
+					<!-- panel content goes here -->
+				</div><!-- /panel -->
+                
+         
+         <div id="slidePopUp" hidden="true" 
+            style="width:100%;background-image:url(images/bg_trans.png);position:fixed;top:0px;z-index:100; height:auto;">
+            	<!--<button id="popUpCloseBtn" onClick="onPopUpCloseClick()">Close</button>-->
+                <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+ 
+                <a href="#" onClick="document.location.href='quick_panel_out.html';" class="backBtn">Back</a>
+                <h1 class="headerTitle">Search Options</h1>
+                <a href="#" id="popUpCloseBtn" onClick="onPopUpCloseClick()" class="lightblueBtn">Hide</a>
+            </div>
+        <!--Header End-->
+                
+                <div style="width:100%; height:auto; ">
+                	<div class="all-map-images"><br /><br />
+                    
+                        <img src="images/other/map-view.png" width="100%" height="auto" alt="" onClick="document.location.href='map_cpa.html';"/><br /><br />
+                        <img src="images/other/photos.png" width="100%" height="auto" alt="" 
+onClick="document.location.href='featured.html';"/><br /><br />
+                        <img src="images/other/list.png" width="100%" height="auto" alt=""     onClick="document.location.href='search_filters_on.html';" /><br /><br />
+                        <img src="images/other/filter.png" width="100%" height="auto" alt=""   onClick="document.location.href='search_results.html';"/><br /><br />
+                        
+                        <a href="#popupBasic" data-rel="popup">
+                        <img src="images/other/save-search.png" width="100%" height="auto" alt=""  />
+                         </a>
+                     
+                         
+                        
+                       
+                    </div>
+                </div>        
+            </div>
+            
+            
+            <div data-role="popup" id="popupBasic" 
+             style="background:#101c31;padding:10px;height:143px;width:92%;">
+			<div id="popheader" data-role="header" 
+            style="background:#101c31; height:48px">
+             <a href="#" class="blueBtn" onClick="document.location.href='#';">Cancel</a>
+            <h1 class="headerTitle"></h1>
+            <a href="#" onClick="document.location.href='login_screen.html';" class="lightblueBtn">Save</a>
+        </div>
+        
+        <div style="background:#dee1e6;padding:10px;height:65px;border-radius:5px;">
+        <strong>&nbsp; Name your search</strong>
+        	<input id="pop-input" style="border:none;border-radius:0;"/>
+			</div>
+            </div>
+              
+                
+                
+                
+                
+                
+                
+        </div>
+    </body>
+</html>

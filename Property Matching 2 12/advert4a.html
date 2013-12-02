@@ -1,0 +1,128 @@
+<!DOCTYPE html> 
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>Advert4a</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery.constant.js"></script>
+
+
+<script>
+	sessionStorage.lat ;
+   	sessionStorage.long;
+	function init(){
+		onAppResize();
+	}
+	
+	function onAppResize(){
+		var headerH = $('#headerDiv').height();
+		if(headerH == 0){
+			headerH = 50;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-45;
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+	
+	function onNext()
+		{
+		
+		sessionStorage.choice_1 = $('#choice_1').val();
+		sessionStorage.choice_2 = $('#choice_2').val();
+		sessionStorage.choice_3 = $('#choice_3').val();
+		sessionStorage.choice_4 = $('#choice_4').val();
+		sessionStorage.choice_5 = $('#choice_5').val();
+		sessionStorage.choice_6 = $('#choice_6').val();
+		sessionStorage.choice_7 = $('#choice_7').val();
+		
+		insertDetail();
+			window.location.replace("advert_details.html");	
+		}
+	
+	function insertDetail(){
+		
+		var addinquiry = {
+                                  
+					"login_id"                : sessionStorage.login_id,
+				  "advertising_type"          : sessionStorage.advertise_type,//rented or wanted ""
+					"accommodation_type" 	  : sessionStorage.accomodation_type,
+					"house_type"              : sessionStorage.house_type,
+					"postcode"                : sessionStorage.postcode,
+					"address1"                 :sessionStorage.choice_1,
+					"address2"                 :sessionStorage.choice_2,
+					"address3"                 :sessionStorage.choice_3,
+					"address4"                 :sessionStorage.choice_4,
+					"address5"                 :sessionStorage.choice_5,
+					"address6"                 :sessionStorage.choice_6,
+					"address7"                 :sessionStorage.choice_7,
+					"latitude"                 :sessionStorage.lat,
+					"longitude"                 :sessionStorage.long
+                                    
+                                    
+                     }
+								
+								
+								
+			var param1= 'Post_Advert_Rented='+JSON.stringify(addinquiry);
+		getDetails=getDataFromWebservices(post_advert_rentedurl,param1);
+		
+					var status =getDetails.status;
+					//var reg_id = getStatus.Result;
+					
+					//console.log(Registration_id);
+					
+					
+				if(status=="YES")
+					{
+					
+					ResultCollection = getDetails.Result;
+					console.log(ResultCollection);
+					sessionStorage.property_id = 	ResultCollection;
+					
+					
+				}else
+					{
+					alert("Please fill all the field");
+					console.log("dataerror");
+					}
+						
+				
+	
+	//window.location.replace("search_results_tenants.html");					
+		
+	}
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+	<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" onClick="document.location.href='advert4.html';" class="backBtn">Back</a>
+            <h1 class="headerTitle">Location</h1>
+            <a href="#" onClick="onNext();" class="lightblueBtn">Next</a>
+        </div>
+        <!--Header End-->
+        
+        <!--Content Start-->
+        <div data-role="content"  id="contentDiv" >	
+			<h2 class="advert-txt">Location of accommodation</h2>
+			<form>
+                <input id="choice_1" class="user-input" type="text" placeholder="Address choice 1"/>
+                <input id="choice_2"  class="user-input" type="text" placeholder="Address choice 2"/>
+                <input id="choice_3"  class="user-input" type="text" placeholder="Address choice 3"/>
+                <input id="choice_4"  class="user-input" type="text" placeholder="Address choice 4"/>
+                <input id="choice_5"  class="user-input" type="text" placeholder="Address choice 5"/>
+                <input id="choice_6"  class="user-input" type="text" placeholder="Address choice 6"/>
+                <input id="choice_7"  class="user-input" type="text" placeholder="Address choice 7"/>
+			</form>
+        </div>
+        <!--Content End-->
+    </div>
+</body>
+</html>

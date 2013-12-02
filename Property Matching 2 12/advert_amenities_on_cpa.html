@@ -1,0 +1,148 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Advert amenities on cpa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+
+<script>
+	function init(){
+		onAppResize();
+	}
+	
+	function onAppResize(){
+		var headerH = document.getElementById('headerDiv').style.height;
+		//var footerH = document.getElementById('footerDiv').style.height;
+		headerH = $('#headerDiv').height();
+		//footerH = $('#footerDiv').height();
+	
+		if(headerH == 0){
+			headerH = 50;
+			//footerH = 45;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-10;
+	
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" onClick="document.location.href='advert_amenities.html';" class="backBtn">Back</a>
+            <h1 class="headerTitle">Amenities</h1>
+            <a href="#" onClick="document.location.href='#';" class="lightblueBtn">Next</a>
+        </div>
+        <!--Header End-->       
+        
+        
+        
+		<!--Content Start-->
+        <div data-role="content"  id="contentDiv" style="margin:0;padding:0;">
+        <h2 class="blue-txt" style="padding:0 0 0 15px;">Select your amenities</h2>
+		
+        <div class="search-bg"><a href="#" class="male-grey-icon"> 
+        <img src="images/other/tv-on.png" width="35" height="35" alt="" /></a>
+			
+            <center class="indigo-txt-new">            
+           	Furnished
+            </center>
+     <a href="#" class="right-tick-icon3" > <img src="images/other/correct.png" width="24" height="30" alt="" /></a>
+		</div>
+        
+        <div class="search-bg"><a href="#" class="male-grey-icon"> 
+        <img src="images/other/car-on.png" width="35" height="35" alt="" /></a>
+			
+            <center class="indigo-txt-new">            
+           	Parking
+            </center>
+     <a href="#" class="right-tick-icon3" > <img src="images/other/correct.png" width="24" height="30" alt="" /></a>
+		</div>
+        <div class="search-bg"><a href="#" class="male-grey-icon"> 
+        <img src="images/other/bunglow.png" width="35" height="35" alt="" /></a>
+			
+            <center class="indigo-txt-new">            
+           	Garage
+            </center>
+     <a href="#" class="right-tick-icon3" > <img src="images/other/correct.png" width="24" height="30" alt="" /></a>
+		</div>
+        <div class="search-bg"><a href="#" class="male-grey-icon"> 
+        <img src="images/other/internet-on.png" width="35" height="35" alt="" /></a>
+			
+            <center class="indigo-txt-new">            
+           	Internet
+            </center>
+     <a href="#" class="right-tick-icon3" > <img src="images/other/correct.png" width="24" height="30" alt="" /></a>
+		</div>
+        <div class="search-bg"><a href="#" class="male-grey-icon"> 
+        <img src="images/other/wifi-on.png" width="35" height="35" alt="" /></a>
+			
+            <center class="indigo-txt-new">            
+           	Wireless internet
+            </center>
+     <a href="#" class="right-tick-icon3" > <img src="images/other/correct.png" width="24" height="30" alt="" /></a>
+		</div>
+        <div class="search-bg"><a href="#" class="male-grey-icon"> 
+        <img src="images/other/garden-on.png" width="35" height="35" alt="" /></a>
+			
+            <center class="indigo-txt-new">            
+           	Garden Terrace
+            </center>
+     <a href="#" class="right-tick-icon3" > <img src="images/other/correct.png" width="24" height="30" alt="" /></a>
+		</div>
+        <div class="search-bg"><a href="#" class="male-grey-icon"> 
+        <img src="images/other/cable-on.png" width="35" height="35" alt="" /></a>
+			
+            <center class="indigo-txt-new">            
+           	Satellite/Cable
+            </center>
+     <a href="#" class="right-tick-icon3" > <img src="images/other/correct.png" width="24" height="30" alt="" /></a>
+		</div>
+        <div class="search-bg"><a href="#" class="male-grey-icon"> 
+        <img src="images/other/pets-off.png" width="35" height="35" alt="" /></a>
+			
+            <center class="indigo-txt-new">            
+           	Pets
+            </center>
+     <a href="#" class="right-tick-icon3" > <img src="images/other/correct.png" width="24" height="30" alt="" /></a>
+		</div>
+        <div class="search-bg"><a href="#" class="male-grey-icon"> 
+        <img src="images/other/tenant-on.png" width="35" height="35" alt="" /></a>
+			
+            <center class="indigo-txt-new">            
+           	Working Tenant
+            </center>
+     <a href="#" class="right-tick-icon3" > <img src="images/other/correct.png" width="24" height="30" alt="" /></a>
+		</div>
+        
+        <div class="search-bg"><a href="#" class="male-grey-icon"> 
+        <img src="images/other/student-off.png" width="35" height="35" alt="" /></a>
+			
+            <center class="indigo-txt-new">            
+           	Students
+            </center>
+     <a href="#" class="right-tick-icon3" > <img src="images/other/correct.png" width="24" height="30" alt="" /></a>
+		</div>
+        <div class="search-bg"><a href="#" class="male-grey-icon"> 
+        <img src="images/other/dss-off.png" width="35" height="35" alt="" /></a>
+			
+            <center class="indigo-txt-new">            
+           	DSS
+            </center>
+     <a href="#" class="right-tick-icon3" > <img src="images/other/correct.png" width="24" height="30" alt="" /></a>
+		</div>
+        
+        
+        </div> 
+        <!--Content End-->
+        </div>
+</body>
+</html>

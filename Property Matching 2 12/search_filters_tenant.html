@@ -1,0 +1,177 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+        <meta charset="utf-8">
+        <title>search filters tenant</title>
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+        <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+
+		<script>
+            function init(){
+                onAppResize();
+            }
+            
+            function onAppResize(){
+                var headerH = $('#headerDiv').height();
+                if(headerH == 0){
+                    headerH = 50;
+                }
+                
+                var appHeight = window.innerHeight;
+                var contentH = appHeight-(headerH)-45;
+                document.getElementById('contentDiv').style.height = contentH+'px';
+            }
+			
+			
+			
+        </script>
+	</head> 
+    
+	<body onResize="onAppResize()" onLoad="init()"> 
+            
+            <div data-role="page" id="page" class="myContentBG">
+                    <!--Header Start-->
+                    <div id="headerDiv" data-role="header" class="myHeaderBG">
+                       <a href="#" class="blueBtn" 
+                       onClick="document.location.href='search_results_tenants.html';">Cancel</a>
+                       <h1 class="headerTitle">Search Filters</h1>
+                       <div class="" style="float: right;margin: -34px 11px 0 0;">
+                       	<a href="#" style="text-decoration:none;color:#FFF;font-weight:bold;font-size:15px;" 
+                        onClick="document.location.href='search_results_tenants.html';" class="darkpinkBtn">Match</a>
+                       </div>
+                    </div>
+                    <!--Header End-->
+                    
+                    <!--Content Start-->
+                    <div data-role="content"  id="contentDiv" style="font-weight:bold;color:#365480">	
+            
+                    Radius
+                    
+                     <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:10px 10px 10px 10px; height:40px; line-height:39px; margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Withing 3 miles</l> 
+            <a href="#"><img src="images/other/blue-arrow.png" class="blue-arrow-icon" width="30" height="30" style="margin-top:3px;"/></a>
+            </div>
+            <br/>
+                    Type
+                     <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:10px 10px 10px 10px; height:40px; line-height:39px; margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Flat</l> 
+            <a href="#"><img src="images/other/blue-arrow.png" class="blue-arrow-icon" width="30" height="30" style="margin-top:3px;"/></a>
+            </div>
+            
+            <br/>
+                    Bedrooms
+                     <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:10px 10px 10px 10px; height:40px; line-height:39px; margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">3</l> 
+            <a href="#"><img src="images/other/blue-arrow.png" class="blue-arrow-icon" width="30" height="30" style="margin-top:3px;"/></a>
+            </div>
+            
+            <br/>
+                    Price
+                     <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:10px 10px 10px 10px; height:40px; line-height:39px; margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">100-300 pcm</l> 
+            <a href="#"><img src="images/other/blue-arrow.png" class="blue-arrow-icon" width="30" height="30" style="margin-top:3px;"/></a>
+            </div>
+            
+            <br/>
+                    When
+                     <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:10px 10px 10px 10px; height:40px; line-height:39px; margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Anytime</l> 
+            <a href="#"><img src="images/other/blue-arrow.png" class="blue-arrow-icon" width="30" height="30" style="margin-top:3px;"/></a>
+            </div>
+            
+            
+            <br/>
+                    Amenities
+                     <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:10px 10px 0px 0px; height:40px; line-height:39px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">With photo only</l> 
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h></div>
+            
+            <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:0px 0px 0px 0px; height:40px; line-height:39px;margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Furnished</l> 
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h></div>
+            
+            <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:0px 0px 0px 0px; height:40px; line-height:39px;margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Parking</l>
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h></div>
+            
+            <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:0px 0px 0px 0px; height:40px; line-height:39px;margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Garage</l> 
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h></div>
+            <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:0px 0px 0px 0px; height:40px; line-height:39px;margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Internet</l> 
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h></div>
+            <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:0px 0px 0px 0px; height:40px; line-height:39px;margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Wireless Internet</l>
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h>
+            </div>
+            <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:0px 0px 0px 0px; height:40px; line-height:39px;margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Garden/Terrace</l> 
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h>
+            </div>
+            <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:0px 0px 0px 0px; height:40px; line-height:39px;margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Satellite/Cable</l> 
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h>
+            </div>
+            <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:0px 0px 0px 0px; height:40px; line-height:39px;margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Pets</l> 
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h>
+            </div>
+            <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:0px 0px 0px 0px; height:40px; line-height:39px;margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Working Tenant</l> 
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h></div>
+            <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:0px 0px 0px 0px; height:40px; line-height:39px;margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">Students</l> 
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h></div>
+            
+            <div style="background:#FFF; width:98%; border:1px solid #CCC; border-radius:0px 0px 10px 10px; height:40px; line-height:39px; margin-top:-1px;">
+            <l style="font-weight:bold;color:#696868;margin-left:10px;">DSS</l> 
+            <h><select name="flip-mini" id="switch" data-role="slider" data-mini="true">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select></h>
+            </div>
+            
+            
+        </div>
+        <!--Content End-->
+       
+	</div>
+
+</body>
+</html>

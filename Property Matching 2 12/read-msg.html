@@ -1,0 +1,77 @@
+<!DOCTYPE html> 
+<html>
+<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+<script>
+	function init(){
+		onAppResize();
+	}
+	
+	function onAppResize(){
+		var headerH = $('#headerDiv').height();
+		if(headerH == 0){
+			headerH = 50;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-5;
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" onClick="document.location.href='my-msgs_2.html';" class="backBtn">Back</a>
+            <h1 class="headerTitle">My Saved Searches</h1>
+       </div>
+       
+       <div class="park-drive">Re: 80 Park Drive N21</div>
+        <!--Header End-->
+        <!--Content Start-->
+        <div data-role="content"  id="contentDiv">	
+        	<div class="frm-txt">
+            	<div class="blue-txt2">From:</div>
+            	<div class="mary-txt">Mary</div>
+                <div class="time-txt">13:53</div>
+            </div>
+            
+            <div class="frm-txt">
+            	<div class="blue-txt2">Subject:</div>
+            	<div class="mary-txt2">Lovely 2 bedroom apartment</div>
+            </div><br />
+            <p>
+            Hi Tony<br /><br />
+            I would love to come and see your property 
+            anytime this week as I am really desperate  to find
+            somewhere to live. Can you please let me know a
+            good time to come and view<br /><br />
+            
+            Kind regards<br />
+            Mary
+            </p>
+            
+            <div class="grey-line"></div><br />
+            
+            <div class="mary-txt2">On September 19th 2013 at 14:45 you wrote</div><br /><br />
+            
+            
+            <p>Hi Tony<br /><br />
+            I would love to come and see your property 
+            anytime this week as I am really desperate  to find
+            somewhere to live. Can you please let me know a
+            good time to come and view<br /><br />
+            
+            Kind regards<br />
+            Mary</p>
+        </div>
+        <!--Content End-->
+        </div>
+</body>
+</html>

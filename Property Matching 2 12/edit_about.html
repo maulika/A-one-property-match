@@ -1,0 +1,111 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Edit about</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+		<script src="js/jquery.constant.js" type="text/javascript"></script>
+<script>
+	function init(){
+		onAppResize();
+	}
+	
+	function onAppResize(){
+		var headerH = document.getElementById('headerDiv').style.height;
+		//var footerH = document.getElementById('footerDiv').style.height;
+		headerH = $('#headerDiv').height();
+		//footerH = $('#footerDiv').height();
+	
+		if(headerH == 0){
+			headerH = 50;
+			//footerH = 45;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-45;
+	
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+	
+	
+	
+	function onFavourite(){
+		
+		
+		var addinquiry = {
+                             "login_id"		:	sessionStorage.postcode,//area,postcode
+                             "type_id"      :     id,//selected tenents/advert id
+                             "Type"         :       "Tenants"//Tenants / Property
+                          }
+		
+		
+		
+		var param1= 'add_to_fevorite='+JSON.stringify(addinquiry);
+		getDetails=getDataFromWebservices(add_to_fevorite,param1);
+		
+					var status =getDetails.status;
+					//var reg_id = getStatus.Result;
+					console.log(status);
+					//console.log(Registration_id);
+					
+					
+				if(status=="YES")
+					{
+					}
+		
+		
+		}
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" class="blueBtn" onClick="document.location.href='edit_profile.html';">Cancel</a>
+            <h1 class="headerTitle">My Profile</h1>
+            <a href="#" id="star_image" onClick="onFavourite();" class="greystarBtn"></a>
+        </div>
+        <!--Header End-->
+        <!--Content Start-->
+        <div data-role="content"  id="contentDiv" >	
+			<div class="user-main">
+				<div class="user-pic"><img src="images/other/tenant.png" width="109" height="120" alt="" /><br/>
+				<span class="user-location">London, England</span></div>
+				<div class="user-info"><b>John</b><br/>
+							  Member since <br/>
+							  09/01/2013<br/>
+							  <div class="pink-contact-button" onClick="document.location.href='login_screen.html';"><img src="images/other/contact.png" width="105" height="39" alt="" onClick="document.location.href='login_screen.html';" /></div>
+				</div>
+				
+			</div>
+			<div class="user-bit">
+				<div class="bit-bg"><span style="padding: 2px 0 4px 10px;">A bit about me....</span></div>
+				<div class="bit-in-txt">Our poolside suite has a separate entrance from 
+				the main house and can be accessed from the 
+				street without disturbing the residents of the 
+				house. The suite has one bedroom with a quee
+				size bed and a private bathroom. We can provide 
+				a cot to squeeze in a third person. The suite opens 
+				to and overlooks our swimming pool (solar heated 
+				in summer), which is available to guests. Free 
+				street parking. Easy access to public transportation. 
+				Bicycles available for guest use.</div>
+			</div>
+			
+			<form>
+			<input class="user-input2" type="text" placeholder="Phone:"/><img src="images/other/phone.png" width="30" height="30" alt="" class="user-input-img"  onClick="document.location.href='login_screen.html';"/>
+			<input class="user-input2" type="text" placeholder="Mobile:"/><img src="images/other/mobile.png" width="21" height="30" alt="" class="user-input-img"  onClick="document.location.href='login_screen.html';"/>
+			<input class="user-input2" type="text" placeholder="Email:"/><img src="images/other/email.png" width="35" height="26" alt="" class="user-input-img"  onClick="document.location.href='login_screen.html';"/>
+			</form>
+			
+			
+        </div>
+        <!--Content End-->
+        </div>
+</body>
+</html>

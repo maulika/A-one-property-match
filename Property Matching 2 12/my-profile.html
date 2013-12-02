@@ -1,0 +1,140 @@
+<!DOCTYPE html> 
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>My Profile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+		 <script src="js/jquery.constant.js" type="text/javascript"></script>
+	    <link href="css/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
+
+<script>
+	function init(){
+		onAppResize();
+		MyProfileDetails();
+	}
+	
+	function onAppResize(){
+		var headerH = $('#headerDiv').height();
+		if(headerH == 0){
+			headerH = 50;
+		}
+		
+		var appHeight = window.innerHeight;
+		var contentH = appHeight-(headerH)-45;
+		document.getElementById('contentDiv').style.height = contentH+'px';
+	}
+	function MyProfileDetails(){
+		
+		var newItem="";
+		
+		var addinquiry = {
+                                    "Login_id"          :sessionStorage.login_id,
+                                   
+                          }
+		
+		
+		
+		var param1= 'My_Profile='+JSON.stringify(addinquiry);
+		getDetails=getDataFromWebservices(my_profile_view,param1);
+		
+					var status =getDetails.status;
+					//var reg_id = getStatus.Result;
+					console.log(status);
+					//console.log(Registration_id);
+					
+					
+				if(status=="YES")
+					{
+					
+					ResultCollection = getDetails.Result;
+					console.log(ResultCollection);
+						for(var i=0; i<ResultCollection.length; i++){
+							 
+							getObj = ResultCollection[i];
+							var id= getObj.id;
+							var name = getObj.firstName;
+							var member = getObj.member;
+							var image= getObj.image;
+							var area= getObj.area;
+							var aboutme= getObj.aboutme;
+							var phone= getObj.phone;
+							var mobile= getObj.mobile;
+							var email= getObj.email;
+							var latitude= getObj.latitude;
+							var longitude= getObj.longitude;
+							
+						console.log(id);
+						console.log(name);
+						console.log(member);
+						console.log(area);
+						console.log(aboutme);
+						
+										
+				
+										}
+										
+					
+					
+					$('#tenant_name').html(name);					
+					$('#member_since').html(member);
+					$('#about_me').html(aboutme);
+					$('#area').html(area);
+					document.getElementById("phone").value="Phone:    " +phone;
+					document.getElementById("mobile").value="Mobile:    " +mobile;
+					document.getElementById("email").value="Email:    " +email;
+					document.getElementById('profile_pic').src= image;
+					
+					
+				}else
+					{
+					alert("Please fill all the field");
+					console.log("dataerror");
+					}
+						
+				
+	
+	//window.location.replace("search_results_tenants.html");
+	
+}
+</script>
+</head> 
+<body onResize="onAppResize()" onLoad="init()"> 
+	<div data-role="page" id="page" style="height:auto;" class="myContentBG">
+        <!--Header Start-->
+        <div id="headerDiv" data-role="header" class="myHeaderBG">
+            <a href="#" onClick="document.location.href='my-account.html';" class="backBtn">Back</a>
+            <h1 class="headerTitle">My Profile</h1>
+            <a href="#" onClick="document.location.href='notifications.html';" class="setting-icon"></a>
+        </div>
+        <!--Header End-->
+        
+        <!--Content Start-->
+        <div data-role="content"  id="contentDiv">	
+			<div class="user-main">
+				<div class="user-pic"><img src="images/other/user-pic.png" width="110" height="111" alt=""  onClick="document.location.href='update_profile_pic.html';" id="profile_pic"/><br/>
+				<span class="user-location" id="area">London, England</span></div>
+				<div class="user-info"><b><name id="tenant_name"></name></b><br/>
+							  Member since <br/>
+							 <name id="member_since"></name><br/>
+				</div>
+			</div>
+			<div class="user-bit">
+				<div class="bit-bg"><span style="padding: 2px 0 4px 10px;">A bit about me....</span></div>
+				<div class="bit-in-txt" id="about_me"></div>
+			</div>
+			
+			<form>
+			<input id="phone" class="user-input" type="text" placeholder="Phone:&nbsp;&nbsp;&nbsp;0207 237 8979"/>
+			<input id="mobile" class="user-input" type="text" placeholder="Mobile:&nbsp;&nbsp;&nbsp;07987876765"/>
+			<input id="email" class="user-input" type="text" placeholder="Email:john.smith@hotmail.co.uk"/>
+			</form>
+			
+        </div>
+        <!--Content End-->
+    </div>
+</body>
+</html>
